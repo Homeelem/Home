@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PasswordDialog from "./PasswordDialog";
-
-const ADMIN_SESSION_KEY = "admin_authenticated";
-const SESSION_DURATION = 30 * 60 * 1000; // 30 minutes
+import { onAuthStateChanged, signOut, User } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import AdminAuth from "./AdminAuth";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -11,59 +10,39 @@ interface ProtectedRouteProps {
 }
 
 export default function ProtectedRoute({ children, pageName = "Admin Panel" }: ProtectedRouteProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
   const [isChecking, setIsChecking] = useState(true);
+  const [showAuth, setShowAuth] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    checkAuthentication();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setIsChecking(false);
+      if (!user) {
+        setShowAuth(true);
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const checkAuthentication = () => {
+  const handleAuthSuccess = () => {
+    setShowAuth(false);
+  };
+
+  const handleAuthCancel = () => {
+    setShowAuth(false);
+    navigate("/");
+  };
+
+  const handleLogout = async () => {
     try {
-      const sessionData = localStorage.getItem(ADMIN_SESSION_KEY);
-      if (sessionData) {
-        const { timestamp } = JSON.parse(sessionData);
-        const now = Date.now();
-        
-        // Check if session is still valid (30 minutes)
-        if (now - timestamp < SESSION_DURATION) {
-          setIsAuthenticated(true);
-        } else {
-          // Session expired, clear it
-          localStorage.removeItem(ADMIN_SESSION_KEY);
-        }
-      }
+      await signOut(auth);
+      navigate("/");
     } catch (error) {
-      console.error("Error checking authentication:", error);
-      localStorage.removeItem(ADMIN_SESSION_KEY);
-    } finally {
-      setIsChecking(false);
+      console.error("Error signing out:", error);
     }
-  };
-
-  const handlePasswordSuccess = () => {
-    // Store authentication in localStorage with timestamp
-    const sessionData = {
-      timestamp: Date.now(),
-      authenticated: true
-    };
-    localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(sessionData));
-    
-    setIsAuthenticated(true);
-    setShowPasswordDialog(false);
-  };
-
-  const handlePasswordCancel = () => {
-    setShowPasswordDialog(false);
-    navigate("/");
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem(ADMIN_SESSION_KEY);
-    setIsAuthenticated(false);
-    navigate("/");
   };
 
   // Show loading while checking authentication
@@ -80,23 +59,13 @@ export default function ProtectedRoute({ children, pageName = "Admin Panel" }: P
     );
   }
 
-  // Show password dialog if not authenticated
-  if (!isAuthenticated) {
+  // Show auth form if not authenticated
+  if (!user || showAuth) {
     return (
-      <>
-        <PasswordDialog
-          open={showPasswordDialog || true}
-          onSuccess={handlePasswordSuccess}
-          onCancel={handlePasswordCancel}
-        />
-        <div className="container py-10">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center py-8">
-              <p className="text-muted-foreground">Authentication required to access {pageName.toLowerCase()}.</p>
-            </div>
-          </div>
-        </div>
-      </>
+      <AdminAuth
+        onSuccess={handleAuthSuccess}
+        onCancel={handleAuthCancel}
+      />
     );
   }
 
@@ -106,7 +75,9 @@ export default function ProtectedRoute({ children, pageName = "Admin Panel" }: P
       <div className="bg-muted/50 border-b">
         <div className="container py-2">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">{pageName} - Authenticated</span>
+            <span className="text-muted-foreground">
+              {pageName} - Authenticated as {user.email}
+            </span>
             <button
               onClick={handleLogout}
               className="text-muted-foreground hover:text-foreground transition-colors"

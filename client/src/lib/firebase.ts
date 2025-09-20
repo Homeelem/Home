@@ -1,5 +1,6 @@
 import { getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAPz1yaE7SlZukOQJeBAbpjzfGxNJhCHOQ",
@@ -15,10 +16,12 @@ const firebaseEnabled = Object.values(firebaseConfig).every(Boolean);
 
 let app: ReturnType<typeof initializeApp> | undefined;
 let db: ReturnType<typeof getFirestore> | undefined;
+let auth: ReturnType<typeof getAuth> | undefined;
 
 if (firebaseEnabled) {
   app = getApps().length ? getApps()[0]! : initializeApp(firebaseConfig as any);
   db = getFirestore(app);
+  auth = getAuth(app);
 }
 
-export { db, firebaseEnabled };
+export { db, auth, firebaseEnabled };
