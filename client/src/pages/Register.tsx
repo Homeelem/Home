@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Wand2 } from "lucide-react";
 import { products } from "@/data/products";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db, firebaseEnabled } from "@/lib/firebase";
@@ -31,6 +32,28 @@ export default function Register() {
       console.warn("Firebase not configured. Set VITE_FIREBASE_* env vars to enable saving registrations.");
     }
   }, []);
+
+  const fillDummyData = () => {
+    const dummyData = {
+      orderId: `404-${Math.floor(Math.random() * 9000000) + 1000000}-${Math.floor(Math.random() * 9000000) + 1000000}`,
+      purchaseDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Random date within last 30 days
+      email: `customer${Math.floor(Math.random() * 1000)}@example.com`,
+      phone: `9${Math.floor(Math.random() * 9000000000) + 1000000000}`, // 10-digit Indian mobile
+    };
+    
+    setOrderId(dummyData.orderId);
+    setPurchaseDate(dummyData.purchaseDate);
+    setEmail(dummyData.email);
+    setPhone(dummyData.phone);
+    
+    // Select a random product if none is selected
+    if (!productId) {
+      const randomProduct = products[Math.floor(Math.random() * products.length)];
+      setProductId(randomProduct.id);
+    }
+    
+    toast.success("Dummy data filled!");
+  };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,8 +88,21 @@ export default function Register() {
     <div className="container py-10">
       <div className="max-w-3xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight">Register your HomeElem product</h1>
-          <p className="text-muted-foreground mt-2">Provide your purchase details to activate warranty and support.</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight">Register your HomeElem product</h1>
+              <p className="text-muted-foreground mt-2">Provide your purchase details to activate warranty and support.</p>
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={fillDummyData}
+              className="flex items-center gap-2"
+            >
+              <Wand2 className="h-4 w-4" />
+              Fill Dummy Data
+            </Button>
+          </div>
         </div>
         {!firebaseEnabled && (
           <div className="mb-6 rounded-lg border bg-yellow-50 text-yellow-900 p-4 text-sm">

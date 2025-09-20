@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import ThankYou from "./pages/ThankYou";
 import LogoTest from "./pages/LogoTest";
 import ProtectedAdmin from "./components/ProtectedAdmin";
+import RegistrationsAdmin from "./pages/RegistrationsAdmin";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/logo-test" element={<LogoTest />} />
           <Route path="/admin-secret-2024" element={<ProtectedAdmin />} />
+          <Route path="/admin-registrations-secret-2024" element={<RegistrationsAdmin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

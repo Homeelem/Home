@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Edit, Trash2, Save, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import { collection, addDoc, updateDoc, deleteDoc, doc, getDocs, serverTimestamp } from "firebase/firestore";
 import { db, firebaseEnabled } from "@/lib/firebase";
 import { loadProducts as loadFallbackProducts } from "@/lib/products";
@@ -481,9 +482,14 @@ export default function Admin() {
   return (
     <div className="container py-10">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight">Admin Panel</h1>
-          <p className="text-muted-foreground mt-2">Manage your product catalog</p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Admin Panel</h1>
+            <p className="text-muted-foreground mt-2">Manage your product catalog</p>
+          </div>
+          <Button asChild variant="outline">
+            <Link to="/admin-registrations-secret-2024">View Registrations</Link>
+          </Button>
         </div>
 
         {/* Add/Edit Product Form */}
