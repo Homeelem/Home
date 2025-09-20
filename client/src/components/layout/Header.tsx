@@ -118,16 +118,16 @@ export default function Header() {
             isAnimating ? 'translate-x-0' : 'translate-x-full'
           }`}>
             {/* Sidebar Header */}
-            <div className="flex items-center justify-between p-6 border-b border-white/20 dark:border-white/10 bg-white/5 dark:bg-white/5 backdrop-blur-sm">
-              <h2 className="text-lg font-semibold text-white dark:text-white drop-shadow-lg">Menu</h2>
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Menu</h2>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={closeMenu}
-                className="p-2 hover:bg-white/20 dark:hover:bg-white/20 text-white hover:text-white"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
                 aria-label="Close menu"
               >
-                <X className="h-5 w-5 text-white drop-shadow-lg" />
+                <X className="h-5 w-5 text-gray-600 dark:text-gray-400" />
               </Button>
             </div>
             
@@ -135,40 +135,40 @@ export default function Header() {
             <div className="p-6 space-y-3">
               <Link 
                 to="/products" 
-                className="block w-full p-4 text-left text-base font-medium text-white dark:text-white hover:bg-white/20 dark:hover:bg-white/20 rounded-lg transition-colors drop-shadow-lg"
+                className="block w-full p-4 text-left text-base font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 onClick={closeMenu}
               >
                 Products
               </Link>
               <Link 
                 to="/about" 
-                className="block w-full p-4 text-left text-base font-medium text-white dark:text-white hover:bg-white/20 dark:hover:bg-white/20 rounded-lg transition-colors drop-shadow-lg"
+                className="block w-full p-4 text-left text-base font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 onClick={closeMenu}
               >
                 About Us
               </Link>
               <Link 
                 to="/contact" 
-                className="block w-full p-4 text-left text-base font-medium text-white dark:text-white hover:bg-white/20 dark:hover:bg-white/20 rounded-lg transition-colors drop-shadow-lg"
+                className="block w-full p-4 text-left text-base font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 onClick={closeMenu}
               >
                 Contact
               </Link>
               <Link 
                 to="/customer-service" 
-                className="block w-full p-4 text-left text-base font-medium text-white dark:text-white hover:bg-white/20 dark:hover:bg-white/20 rounded-lg transition-colors drop-shadow-lg"
+                className="block w-full p-4 text-left text-base font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 onClick={closeMenu}
               >
                 Support
               </Link>
               
               {/* Separator */}
-              <div className="border-t border-white/20 dark:border-white/10 my-4" />
+              <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
               
               {/* Register Product Button */}
               <Link 
                 to="/register" 
-                className="block w-full p-4 text-center text-base font-medium text-white bg-primary/80 hover:bg-primary rounded-lg transition-colors backdrop-blur-sm drop-shadow-lg"
+                className="block w-full p-4 text-center text-base font-medium text-white bg-primary hover:bg-primary/90 rounded-lg transition-colors"
                 onClick={closeMenu}
               >
                 Register Product
