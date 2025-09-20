@@ -26,6 +26,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [errors, setErrors] = useState<{email?: string; phone?: string}>({});
 
   useEffect(() => {
     if (!firebaseEnabled) {
@@ -33,18 +34,75 @@ export default function Register() {
     }
   }, []);
 
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateIndianPhone = (phone: string): boolean => {
+    // Remove all non-digit characters
+    const cleanPhone = phone.replace(/\D/g, '');
+    
+    // Check if it's a valid Indian mobile number
+    // Indian mobile numbers start with 6, 7, 8, or 9 and are 10 digits long
+    const indianMobileRegex = /^[6-9]\d{9}$/;
+    
+    // Also accept +91 prefix format
+    if (phone.startsWith('+91')) {
+      const withoutPrefix = phone.substring(3).replace(/\D/g, '');
+      return indianMobileRegex.test(withoutPrefix);
+    }
+    
+    return indianMobileRegex.test(cleanPhone);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    
+    if (value && !validateEmail(value)) {
+      setErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }));
+    } else {
+      setErrors(prev => ({ ...prev, email: undefined }));
+    }
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    
+    // Auto-format phone number with +91 prefix
+    if (value && !value.startsWith('+91') && value.length > 0) {
+      // Remove any non-digit characters
+      const digits = value.replace(/\D/g, '');
+      if (digits.length > 0) {
+        value = '+91' + digits;
+      }
+    }
+    
+    setPhone(value);
+    
+    if (value && !validateIndianPhone(value)) {
+      setErrors(prev => ({ ...prev, phone: 'Please enter a valid Indian mobile number (e.g., +91 9876543210)' }));
+    } else {
+      setErrors(prev => ({ ...prev, phone: undefined }));
+    }
+  };
+
   const fillDummyData = () => {
     const dummyData = {
       orderId: `404-${Math.floor(Math.random() * 9000000) + 1000000}-${Math.floor(Math.random() * 9000000) + 1000000}`,
       purchaseDate: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Random date within last 30 days
       email: `customer${Math.floor(Math.random() * 1000)}@example.com`,
-      phone: `9${Math.floor(Math.random() * 9000000000) + 1000000000}`, // 10-digit Indian mobile
+      phone: `+91${Math.floor(Math.random() * 9000000000) + 1000000000}`, // +91 prefix with 10-digit Indian mobile
     };
     
     setOrderId(dummyData.orderId);
     setPurchaseDate(dummyData.purchaseDate);
     setEmail(dummyData.email);
     setPhone(dummyData.phone);
+    
+    // Clear any existing errors
+    setErrors({});
     
     // Select a random product if none is selected
     if (!productId) {
@@ -57,7 +115,25 @@ export default function Register() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!productId) return toast.error("Please select a product");
+    
+    // Validate all fields
+    if (!productId) {
+      toast.error("Please select a product");
+      return;
+    }
+    
+    if (!validateEmail(email)) {
+      setErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }));
+      toast.error("Please enter a valid email address");
+      return;
+    }
+    
+    if (!validateIndianPhone(phone)) {
+      setErrors(prev => ({ ...prev, phone: 'Please enter a valid Indian mobile number' }));
+      toast.error("Please enter a valid Indian mobile number");
+      return;
+    }
+    
     setSubmitting(true);
     try {
       if (!firebaseEnabled || !db) {
@@ -137,14 +213,36 @@ export default function Register() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
-              <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required />
+              <Input 
+                id="email" 
+                type="email" 
+                value={email} 
+                onChange={handleEmailChange} 
+                placeholder="you@example.com" 
+                required 
+                className={errors.email ? "border-red-500" : ""}
+              />
+              {errors.email && (
+                <p className="text-sm text-red-500">{errors.email}</p>
+              )}
             </div>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 items-start">
             <div className="space-y-2">
               <Label htmlFor="phone">Phone Number</Label>
-              <Input id="phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="10-digit mobile" required />
+              <Input 
+                id="phone" 
+                type="tel" 
+                value={phone} 
+                onChange={handlePhoneChange} 
+                placeholder="+91 9876543210" 
+                required 
+                className={errors.phone ? "border-red-500" : ""}
+              />
+              {errors.phone && (
+                <p className="text-sm text-red-500">{errors.phone}</p>
+              )}
             </div>
             {product && (
               <div className="rounded-lg border p-3 flex items-center gap-3">
