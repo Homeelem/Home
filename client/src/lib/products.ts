@@ -114,6 +114,112 @@ const fallbackProducts: Product[] = [
     price: 6999,
     inStock: true,
   },
+  // Additional dummy products for comprehensive testing
+  {
+    id: "kitchen-knife-set",
+    name: "Professional Chef Knife Set",
+    category: "Kitchen Tools",
+    description: "High-quality stainless steel knives with ergonomic handles for professional cooking.",
+    features: [
+      "High-carbon stainless steel blades",
+      "Ergonomic non-slip handles",
+      "Includes knife block and sharpener",
+      "Dishwasher safe"
+    ],
+    dimensions: { widthCm: 35, heightCm: 8, depthCm: 15, weightKg: 2.1 },
+    images: [
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg",
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg"
+    ],
+    videos: [],
+    amazonUrl: "https://www.amazon.in/s?k=HomeElem+Chef+Knife+Set",
+    price: 3499,
+    inStock: true,
+  },
+  {
+    id: "food-processor-pro",
+    name: "Multi-Function Food Processor",
+    category: "Small Appliances",
+    description: "Versatile food processor with multiple attachments for chopping, slicing, and mixing.",
+    features: [
+      "1000W powerful motor",
+      "8 different attachments",
+      "Large 4L capacity bowl",
+      "Pulse and continuous operation"
+    ],
+    dimensions: { widthCm: 25, heightCm: 35, depthCm: 25, weightKg: 4.2 },
+    images: [
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg",
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg"
+    ],
+    videos: [],
+    amazonUrl: "https://www.amazon.in/s?k=HomeElem+Food+Processor",
+    price: 8999,
+    inStock: false,
+  },
+  {
+    id: "glass-storage-set",
+    name: "Borosilicate Glass Storage Set",
+    category: "Storage",
+    description: "Airtight glass containers perfect for storing dry goods, leftovers, and meal prep.",
+    features: [
+      "Borosilicate glass construction",
+      "Airtight silicone seals",
+      "Stackable design",
+      "Microwave and dishwasher safe"
+    ],
+    dimensions: { widthCm: 30, heightCm: 20, depthCm: 20, weightKg: 1.8 },
+    images: [
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg",
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg"
+    ],
+    videos: [],
+    amazonUrl: "https://www.amazon.in/s?k=HomeElem+Glass+Storage",
+    price: 2499,
+    inStock: true,
+  },
+  {
+    id: "dining-table-set",
+    name: "Modern Dining Table Set",
+    category: "Dining",
+    description: "Contemporary dining table with 4 chairs, perfect for family meals and entertaining.",
+    features: [
+      "Solid wood construction",
+      "Seats 4 people comfortably",
+      "Easy assembly required",
+      "Stain-resistant finish"
+    ],
+    dimensions: { widthCm: 120, heightCm: 75, depthCm: 80, weightKg: 25.5 },
+    images: [
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg",
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg"
+    ],
+    videos: [],
+    amazonUrl: "https://www.amazon.in/s?k=HomeElem+Dining+Table",
+    price: 24999,
+    inStock: true,
+  },
+  {
+    id: "decorative-vase",
+    name: "Ceramic Decorative Vase",
+    category: "Home Decor",
+    description: "Handcrafted ceramic vase with modern design, perfect for flowers or as standalone decor.",
+    features: [
+      "Handcrafted ceramic",
+      "Modern minimalist design",
+      "Waterproof glaze",
+      "Multiple color options"
+    ],
+    dimensions: { widthCm: 15, heightCm: 25, depthCm: 15, weightKg: 0.8 },
+    images: [
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg",
+      "https://images.pexels.com/photos/4397919/pexels-photo-4397919.jpeg"
+    ],
+    videos: [],
+    amazonUrl: "https://www.amazon.in/s?k=HomeElem+Ceramic+Vase",
+    price: 1299,
+    inStock: true,
+  }
 ];
 
 export const loadProducts = async (): Promise<Product[]> => {

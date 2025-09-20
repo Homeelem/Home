@@ -61,7 +61,7 @@ export default function ProductDetails() {
               <img key={i} src={img} alt={`${product.name} ${i + 2}`} className="h-28 w-full object-cover rounded-lg border" />
             ))}
           </div>
-          {product.videos.length > 0 && (
+          {product.videos && product.videos.length > 0 && (
             <div className="grid gap-4">
               {product.videos.map((v, i) => (
                 <div key={i} className="rounded-xl overflow-hidden border">
@@ -86,17 +86,21 @@ export default function ProductDetails() {
               <li key={f} className="rounded-md border bg-card p-3 text-sm">{f}</li>
             ))}
           </ul>
-          <div className="rounded-lg border p-4 text-sm">
-            <p className="font-medium mb-2">Dimensions</p>
-            <p>
-              {dim.widthCm} × {dim.depthCm} × {dim.heightCm} cm
-              {dim.weightKg ? ` • ${dim.weightKg} kg` : ""}
-            </p>
-          </div>
+          {dim && (
+            <div className="rounded-lg border p-4 text-sm">
+              <p className="font-medium mb-2">Dimensions</p>
+              <p>
+                {dim.widthCm} × {dim.depthCm} × {dim.heightCm} cm
+                {dim.weightKg ? ` • ${dim.weightKg} kg` : ""}
+              </p>
+            </div>
+          )}
           <div className="flex flex-wrap gap-3 pt-2">
-            <Button asChild>
-              <a href={product.amazonUrl} target="_blank" rel="noopener noreferrer">Buy on Amazon.in</a>
-            </Button>
+            {product.amazonUrl && (
+              <Button asChild>
+                <a href={product.amazonUrl} target="_blank" rel="noopener noreferrer">Buy on Amazon.in</a>
+              </Button>
+            )}
             <Button asChild variant="secondary">
               <Link to={`/register?productId=${product.id}`}>Register this product</Link>
             </Button>
