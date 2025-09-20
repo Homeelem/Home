@@ -169,15 +169,17 @@ export default function Register() {
               <h1 className="text-3xl font-bold tracking-tight">Register your HomeElem product</h1>
               <p className="text-muted-foreground mt-2">Provide your purchase details to activate warranty and support.</p>
             </div>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={fillDummyData}
-              className="flex items-center gap-2"
-            >
-              <Wand2 className="h-4 w-4" />
-              Fill Dummy Data
-            </Button>
+            {import.meta.env.DEV && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={fillDummyData}
+                className="flex items-center gap-2"
+              >
+                <Wand2 className="h-4 w-4" />
+                Fill Dummy Data
+              </Button>
+            )}
           </div>
         </div>
         {!firebaseEnabled && (

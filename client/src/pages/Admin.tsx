@@ -394,14 +394,16 @@ export default function Admin() {
                 <Plus className="h-4 w-4" />
                 Add New Product
               </Button>
-              <Button 
-                variant="outline" 
-                onClick={addDummyProduct}
-                className="flex items-center gap-2"
-              >
-                <Plus className="h-4 w-4" />
-                Quick Add Dummy Product
-              </Button>
+              {import.meta.env.DEV && (
+                <Button 
+                  variant="outline" 
+                  onClick={addDummyProduct}
+                  className="flex items-center gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  Quick Add Dummy Product
+                </Button>
+              )}
             </div>
           )}
 
@@ -631,14 +633,16 @@ export default function Admin() {
               <Plus className="h-4 w-4" />
               Add New Product
             </Button>
-            <Button 
-              variant="outline" 
-              onClick={addDummyProduct}
-              className="flex items-center gap-2"
-            >
-              <Plus className="h-4 w-4" />
-              Quick Add Dummy Product
-            </Button>
+            {import.meta.env.DEV && (
+              <Button 
+                variant="outline" 
+                onClick={addDummyProduct}
+                className="flex items-center gap-2"
+              >
+                <Plus className="h-4 w-4" />
+                Quick Add Dummy Product
+              </Button>
+            )}
           </div>
         )}
 

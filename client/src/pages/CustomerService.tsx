@@ -357,15 +357,17 @@ ${formData.message}
                       Fill out the form below and we'll get back to you within 24 hours
                     </CardDescription>
                   </div>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={fillDummyData}
-                    className="flex items-center gap-2"
-                  >
-                    <Wand2 className="h-4 w-4" />
-                    Fill Dummy Data
-                  </Button>
+                  {import.meta.env.DEV && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={fillDummyData}
+                      className="flex items-center gap-2"
+                    >
+                      <Wand2 className="h-4 w-4" />
+                      Fill Dummy Data
+                    </Button>
+                  )}
                 </div>
               </CardHeader>
               <CardContent>
