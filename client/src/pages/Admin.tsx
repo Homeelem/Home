@@ -424,13 +424,13 @@ export default function Admin() {
                   {products.map((product) => (
                     <div key={product.id} className="flex items-center justify-between p-4 border rounded-lg">
                       <div className="flex items-center gap-4">
-                        {product.images.length > 0 && (
-                          <img
-                            src={product.images[0]}
-                            alt={product.name}
-                            className="h-16 w-16 object-cover rounded"
-                          />
-                        )}
+                      {product.images && product.images.length > 0 && (
+                        <img
+                          src={product.images[0]}
+                          alt={product.name}
+                          className="h-16 w-16 object-cover rounded"
+                        />
+                      )}
                         <div className="flex-1">
                           <h3 className="font-semibold">{product.name}</h3>
                           <p className="text-sm text-muted-foreground">{product.category}</p>
@@ -440,7 +440,7 @@ export default function Admin() {
                               {product.inStock ? "In Stock" : "Out of Stock"}
                             </Badge>
                             <Badge variant="outline">
-                              {product.images.length} image{product.images.length !== 1 ? 's' : ''}
+                              {product.images ? product.images.length : 0} image{(product.images ? product.images.length : 0) !== 1 ? 's' : ''}
                             </Badge>
                           </div>
                           {product.amazonUrl && (
@@ -666,9 +666,9 @@ export default function Admin() {
                           <Badge variant={product.inStock ? "default" : "secondary"}>
                             {product.inStock ? "In Stock" : "Out of Stock"}
                           </Badge>
-                          <Badge variant="outline">
-                            {product.images.length} image{product.images.length !== 1 ? 's' : ''}
-                          </Badge>
+                            <Badge variant="outline">
+                              {product.images ? product.images.length : 0} image{(product.images ? product.images.length : 0) !== 1 ? 's' : ''}
+                            </Badge>
                         </div>
                         {product.amazonUrl && (
                           <p className="text-xs text-muted-foreground mt-1">

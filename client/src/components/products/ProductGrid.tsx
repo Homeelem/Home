@@ -1,4 +1,4 @@
-import { loadProducts, categories as allCategories, Product } from "@/lib/products";
+import { loadProducts, Product } from "@/lib/products";
 import ProductCard from "./ProductCard";
 import { useMemo, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -7,7 +7,12 @@ export default function ProductGrid() {
   const [active, setActive] = useState<string>("All");
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const categories = useMemo(() => ["All", ...allCategories], []);
+  
+  // Generate categories dynamically from actual products
+  const categories = useMemo(() => {
+    const uniqueCategories = Array.from(new Set(products.map(p => p.category)));
+    return ["All", ...uniqueCategories.sort()];
+  }, [products]);
 
   useEffect(() => {
     const fetchProducts = async () => {

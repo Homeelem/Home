@@ -17,19 +17,19 @@ export default function Index() {
               Explore our curated line of home and kitchen products built to last and crafted to delight. Tap any product to see detailed specs, photos, and videos.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <a href="#catalog">Browse Products</a>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/register">Register a Product</Link>
+              <Button 
+                size="lg"
+                onClick={() => {
+                  const catalogElement = document.getElementById('catalog');
+                  if (catalogElement) {
+                    catalogElement.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                Explore Our Products
               </Button>
             </div>
-            <div className="flex items-center gap-6 pt-2 text-sm text-muted-foreground">
-              <div>
-                <span className="font-semibold text-foreground">Free</span> shipping on select items
-              </div>
-              <div>6‑month standard warranty</div>
-            </div>
+            
           </div>
           <div className="relative">
             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border shadow-lg">
@@ -53,8 +53,17 @@ export default function Index() {
             <h2 className="text-2xl font-bold tracking-tight">Our Product Line</h2>
             <p className="text-muted-foreground">Specialized in home & kitchen — cookware, blenders, air fryers, coffee makers.</p>
           </div>
-          <Button asChild variant="ghost" className="hidden sm:inline-flex">
-            <a href="#categories">Browse by category</a>
+          <Button 
+            variant="ghost" 
+            className="hidden sm:inline-flex"
+            onClick={() => {
+              const categoriesElement = document.getElementById('categories');
+              if (categoriesElement) {
+                categoriesElement.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
+            Browse by category
           </Button>
         </div>
         <ProductGrid />
