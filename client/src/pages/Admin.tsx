@@ -257,7 +257,7 @@ export default function Admin() {
               </div>
               <div className="flex gap-2">
                 <Button asChild variant="outline">
-                  <Link to="/reward-flow-secret-2024">Reward Flow</Link>
+                  <Link to="/customer-rewards">Reward Flow</Link>
                 </Button>
               </div>
             </div>
@@ -500,7 +500,7 @@ export default function Admin() {
           </div>
           <div className="flex gap-2">
             <Button asChild variant="outline">
-              <Link to="/reward-flow-secret-2024">Reward Flow</Link>
+              <Link to="/customer-rewards">Reward Flow</Link>
             </Button>
             <Button asChild variant="outline">
               <Link to="/admin-registrations-secret-2024">View Registrations</Link>

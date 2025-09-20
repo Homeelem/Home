@@ -34,7 +34,7 @@ const App = () => (
         <Header />
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/reward-flow-secret-2024" element={<RewardFlow />} />
+                  <Route path="/customer-rewards" element={<RewardFlow />} />
                   <Route path="/products" element={<Products />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
