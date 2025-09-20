@@ -35,7 +35,7 @@ export default function ThankYou() {
               </div>
               <div>
                 <span className="font-medium text-muted-foreground">Coverage Period:</span>
-                <p className="font-semibold">2 Years</p>
+                <p className="font-semibold">6 Months</p>
               </div>
             </div>
             <div className="pt-4 border-t">

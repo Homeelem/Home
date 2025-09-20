@@ -28,7 +28,7 @@ export default function Index() {
               <div>
                 <span className="font-semibold text-foreground">Free</span> shipping on select items
               </div>
-              <div>2‑year standard warranty</div>
+              <div>6‑month standard warranty</div>
             </div>
           </div>
           <div className="relative">
