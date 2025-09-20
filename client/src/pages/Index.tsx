@@ -1,4 +1,3 @@
-import ProductGrid from "@/components/products/ProductGrid";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle, Shield, Award, Headphones, Wrench, Clock, Star, Users } from "lucide-react";
@@ -101,15 +100,6 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="catalog" className="container py-16 lg:py-20">
-        <div className="mb-8">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">Our Product Line</h2>
-            <p className="text-muted-foreground">Specialized in home & kitchen — cookware, blenders, air fryers, coffee makers.</p>
-          </div>
-        </div>
-        <ProductGrid />
-      </section>
 
       {/* Quality Assurance Section */}
       <section className="py-16 lg:py-20 bg-muted/30">
@@ -352,6 +342,7 @@ export default function Index() {
           </div>
         </div>
       </section>
+
 
       <section className="container pb-20">
         <div className="rounded-2xl border p-8 lg:p-10 bg-gradient-to-br from-primary/10 to-transparent">

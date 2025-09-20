@@ -16,6 +16,9 @@ import Admin from "./pages/Admin";
 import RegistrationsAdmin from "./pages/RegistrationsAdmin";
 import MessagesAdmin from "./pages/MessagesAdmin";
 import CustomerService from "./pages/CustomerService";
+import Products from "./pages/Products";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 
@@ -28,19 +31,22 @@ const App = () => (
       <Sonner />
       <HashRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/logo-test" element={<LogoTest />} />
-          <Route path="/admin-secret-2024" element={<ProtectedRoute pageName="Products Admin"><Admin /></ProtectedRoute>} />
-          <Route path="/admin-registrations-secret-2024" element={<ProtectedRoute pageName="Registrations Admin"><RegistrationsAdmin /></ProtectedRoute>} />
-          <Route path="/admin-messages-secret-2024" element={<ProtectedRoute pageName="Messages Admin"><MessagesAdmin /></ProtectedRoute>} />
-          <Route path="/customer-service" element={<CustomerService />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/product/:id" element={<ProductDetails />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/thank-you" element={<ThankYou />} />
+                  <Route path="/logo-test" element={<LogoTest />} />
+                  <Route path="/admin-secret-2024" element={<ProtectedRoute pageName="Products Admin"><Admin /></ProtectedRoute>} />
+                  <Route path="/admin-registrations-secret-2024" element={<ProtectedRoute pageName="Registrations Admin"><RegistrationsAdmin /></ProtectedRoute>} />
+                  <Route path="/admin-messages-secret-2024" element={<ProtectedRoute pageName="Messages Admin"><MessagesAdmin /></ProtectedRoute>} />
+                  <Route path="/customer-service" element={<CustomerService />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
         <Footer />
       </HashRouter>
     </TooltipProvider>
