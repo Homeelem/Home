@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Admin from "../pages/Admin";
 import PasswordDialog from "./PasswordDialog";
 
 const ADMIN_SESSION_KEY = "admin_authenticated";
 const SESSION_DURATION = 30 * 60 * 1000; // 30 minutes
 
-export default function ProtectedAdmin() {
+interface ProtectedRouteProps {
+  children: React.ReactNode;
+  pageName?: string;
+}
+
+export default function ProtectedRoute({ children, pageName = "Admin Panel" }: ProtectedRouteProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showPasswordDialog, setShowPasswordDialog] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
@@ -88,7 +92,7 @@ export default function ProtectedAdmin() {
         <div className="container py-10">
           <div className="max-w-4xl mx-auto">
             <div className="text-center py-8">
-              <p className="text-muted-foreground">Authentication required to access admin panel.</p>
+              <p className="text-muted-foreground">Authentication required to access {pageName.toLowerCase()}.</p>
             </div>
           </div>
         </div>
@@ -96,13 +100,13 @@ export default function ProtectedAdmin() {
     );
   }
 
-  // Show admin panel if authenticated
+  // Show protected content if authenticated
   return (
     <div>
       <div className="bg-muted/50 border-b">
         <div className="container py-2">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Admin Panel - Authenticated</span>
+            <span className="text-muted-foreground">{pageName} - Authenticated</span>
             <button
               onClick={handleLogout}
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -112,7 +116,7 @@ export default function ProtectedAdmin() {
           </div>
         </div>
       </div>
-      <Admin />
+      {children}
     </div>
   );
 }

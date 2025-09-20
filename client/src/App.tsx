@@ -11,7 +11,8 @@ import ProductDetails from "./pages/ProductDetails";
 import Register from "./pages/Register";
 import ThankYou from "./pages/ThankYou";
 import LogoTest from "./pages/LogoTest";
-import ProtectedAdmin from "./components/ProtectedAdmin";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Admin from "./pages/Admin";
 import RegistrationsAdmin from "./pages/RegistrationsAdmin";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -31,8 +32,8 @@ const App = () => (
           <Route path="/register" element={<Register />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/logo-test" element={<LogoTest />} />
-          <Route path="/admin-secret-2024" element={<ProtectedAdmin />} />
-          <Route path="/admin-registrations-secret-2024" element={<RegistrationsAdmin />} />
+          <Route path="/admin-secret-2024" element={<ProtectedRoute pageName="Products Admin"><Admin /></ProtectedRoute>} />
+          <Route path="/admin-registrations-secret-2024" element={<ProtectedRoute pageName="Registrations Admin"><RegistrationsAdmin /></ProtectedRoute>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
