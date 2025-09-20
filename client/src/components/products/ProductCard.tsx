@@ -1,11 +1,24 @@
 import { Product } from "@/lib/products";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ProductCard({ product }: { product: Product }) {
   const dim = product.dimensions;
+  const navigate = useNavigate();
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't navigate if clicking on the Buy button
+    if ((e.target as HTMLElement).closest('a[href]')) {
+      return;
+    }
+    navigate(`/product/${product.id}`);
+  };
+
   return (
-    <div className="group rounded-xl border bg-card text-card-foreground overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    <div 
+      className="group rounded-xl border bg-card text-card-foreground overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+      onClick={handleCardClick}
+    >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={product.images[0]}
@@ -26,9 +39,6 @@ export default function ProductCard({ product }: { product: Product }) {
           </p>
         )}
         <div className="flex gap-2 pt-1">
-          <Button asChild size="sm">
-            <Link to={`/product/${product.id}`}>View details</Link>
-          </Button>
           {product.amazonUrl && (
             <Button asChild size="sm" variant="secondary">
               <a href={product.amazonUrl} target="_blank" rel="noopener noreferrer">

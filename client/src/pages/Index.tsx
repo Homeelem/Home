@@ -48,23 +48,11 @@ export default function Index() {
       </section>
 
       <section id="catalog" className="container py-16 lg:py-20">
-        <div className="mb-8 flex items-end justify-between gap-4">
+        <div className="mb-8">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Our Product Line</h2>
             <p className="text-muted-foreground">Specialized in home & kitchen — cookware, blenders, air fryers, coffee makers.</p>
           </div>
-          <Button 
-            variant="ghost" 
-            className="hidden sm:inline-flex"
-            onClick={() => {
-              const categoriesElement = document.getElementById('categories');
-              if (categoriesElement) {
-                categoriesElement.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-          >
-            Browse by category
-          </Button>
         </div>
         <ProductGrid />
       </section>
