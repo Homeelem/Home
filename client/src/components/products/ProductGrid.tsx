@@ -1,16 +1,33 @@
-import { products as allProducts, categories as allCategories, Product } from "@/data/products";
+import { loadProducts, categories as allCategories, Product } from "@/lib/products";
 import ProductCard from "./ProductCard";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 export default function ProductGrid() {
   const [active, setActive] = useState<string>("All");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const categories = useMemo(() => ["All", ...allCategories], []);
 
-  const products: Product[] = useMemo(() => {
-    if (active === "All") return allProducts;
-    return allProducts.filter((p) => p.category === active);
-  }, [active]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const allProducts = await loadProducts();
+        setProducts(allProducts);
+      } catch (error) {
+        console.error("Error loading products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const filteredProducts: Product[] = useMemo(() => {
+    if (active === "All") return products;
+    return products.filter((p) => p.category === active);
+  }, [products, active]);
 
   return (
     <div className="space-y-6">
@@ -30,11 +47,17 @@ export default function ProductGrid() {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((p) => (
-          <ProductCard key={p.id} product={p} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="text-center py-8">
+          <p className="text-muted-foreground">Loading products...</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProducts.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

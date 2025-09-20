@@ -1,10 +1,40 @@
 import { useParams, Link } from "react-router-dom";
-import { products } from "@/data/products";
+import { getProduct } from "@/lib/products";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { Product } from "@/lib/products";
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
-  const product = products.find((p) => p.id === id);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      if (!id) return;
+      
+      try {
+        const productData = await getProduct(id);
+        setProduct(productData);
+      } catch (error) {
+        console.error("Error loading product:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="container py-16">
+        <div className="text-center">
+          <p className="text-muted-foreground">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
