@@ -250,8 +250,17 @@ export default function Admin() {
       <div className="container py-10">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold tracking-tight">Admin Panel</h1>
-            <p className="text-muted-foreground mt-2">Manage your product catalog</p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold tracking-tight">Admin Panel</h1>
+                <p className="text-muted-foreground mt-2">Manage your product catalog</p>
+              </div>
+              <div className="flex gap-2">
+                <Button asChild variant="outline">
+                  <Link to="/reward-flow-secret-2024">Reward Flow</Link>
+                </Button>
+              </div>
+            </div>
             <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
               <p className="text-sm text-yellow-800">
                 <strong>Development Mode:</strong> Firebase is not configured. You're working with dummy data that will reset on page refresh.
@@ -490,6 +499,9 @@ export default function Admin() {
             <p className="text-muted-foreground mt-2">Manage your product catalog</p>
           </div>
           <div className="flex gap-2">
+            <Button asChild variant="outline">
+              <Link to="/reward-flow-secret-2024">Reward Flow</Link>
+            </Button>
             <Button asChild variant="outline">
               <Link to="/admin-registrations-secret-2024">View Registrations</Link>
             </Button>

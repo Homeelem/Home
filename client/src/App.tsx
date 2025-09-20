@@ -6,6 +6,7 @@ import { TooltipProvider } from "./components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import RewardFlow from "./pages/RewardFlow";
 import NotFound from "./pages/NotFound";
 import ProductDetails from "./pages/ProductDetails";
 import Register from "./pages/Register";
@@ -33,6 +34,7 @@ const App = () => (
         <Header />
                 <Routes>
                   <Route path="/" element={<Index />} />
+                  <Route path="/reward-flow-secret-2024" element={<RewardFlow />} />
                   <Route path="/products" element={<Products />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
