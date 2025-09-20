@@ -14,6 +14,8 @@ import LogoTest from "./pages/LogoTest";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Admin from "./pages/Admin";
 import RegistrationsAdmin from "./pages/RegistrationsAdmin";
+import MessagesAdmin from "./pages/MessagesAdmin";
+import CustomerService from "./pages/CustomerService";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 
@@ -34,6 +36,8 @@ const App = () => (
           <Route path="/logo-test" element={<LogoTest />} />
           <Route path="/admin-secret-2024" element={<ProtectedRoute pageName="Products Admin"><Admin /></ProtectedRoute>} />
           <Route path="/admin-registrations-secret-2024" element={<ProtectedRoute pageName="Registrations Admin"><RegistrationsAdmin /></ProtectedRoute>} />
+          <Route path="/admin-messages-secret-2024" element={<ProtectedRoute pageName="Messages Admin"><MessagesAdmin /></ProtectedRoute>} />
+          <Route path="/customer-service" element={<CustomerService />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

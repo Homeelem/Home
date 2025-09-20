@@ -487,9 +487,14 @@ export default function Admin() {
             <h1 className="text-3xl font-bold tracking-tight">Admin Panel</h1>
             <p className="text-muted-foreground mt-2">Manage your product catalog</p>
           </div>
-          <Button asChild variant="outline">
-            <Link to="/admin-registrations-secret-2024">View Registrations</Link>
-          </Button>
+          <div className="flex gap-2">
+            <Button asChild variant="outline">
+              <Link to="/admin-registrations-secret-2024">View Registrations</Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link to="/admin-messages-secret-2024">View Messages</Link>
+            </Button>
+          </div>
         </div>
 
         {/* Add/Edit Product Form */}

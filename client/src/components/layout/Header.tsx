@@ -22,6 +22,9 @@ export default function Header() {
           <span className="text-xl font-extrabold tracking-tight">HomeElem</span>
         </Link>
         <div className="flex items-center gap-2">
+          <Button asChild variant="ghost">
+            <Link to="/customer-service">Support</Link>
+          </Button>
           <Button asChild variant="outline">
             <Link to="/register">Register Product</Link>
           </Button>
