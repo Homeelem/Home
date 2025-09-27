@@ -39,6 +39,14 @@ if (!fs.existsSync(srcDir)) {
   process.exit(1);
 }
 
+// Preserve CNAME file if it exists
+const cnamePath = path.join(destDir, 'CNAME');
+let cnameContent = null;
+if (fs.existsSync(cnamePath)) {
+  console.log('📄 Preserving CNAME file...');
+  cnameContent = fs.readFileSync(cnamePath, 'utf8');
+}
+
 // Remove existing docs directory if it exists
 if (fs.existsSync(destDir)) {
   console.log(`Removing existing '${destDir}' directory...`);
@@ -48,6 +56,12 @@ if (fs.existsSync(destDir)) {
 // Copy files from dist/spa to docs
 console.log(`Copying files from '${srcDir}' to '${destDir}'...`);
 copyDir(srcDir, destDir);
+
+// Restore CNAME file if it existed
+if (cnameContent !== null) {
+  console.log('📄 Restoring CNAME file...');
+  fs.writeFileSync(cnamePath, cnameContent);
+}
 
 console.log('✅ Build output successfully moved to docs folder!');
 console.log(`📁 Files copied to: ${path.resolve(destDir)}`);
