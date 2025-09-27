@@ -11,14 +11,23 @@ try {
   console.log('📦 Building client...');
   execSync('npm run build:client', { stdio: 'inherit' });
 
-  // Step 2: Remove existing docs directory if it exists
+  // Step 2: Preserve CNAME file if it exists
+  const cnamePath = 'docs/CNAME';
+  let cnameContent = null;
+  if (existsSync(cnamePath)) {
+    console.log('📄 Preserving CNAME file...');
+    const { readFileSync } = await import('fs');
+    cnameContent = readFileSync(cnamePath, 'utf8');
+  }
+
+  // Step 3: Remove existing docs directory if it exists
   const docsPath = 'docs';
   if (existsSync(docsPath)) {
     console.log('🗑️  Removing existing docs directory...');
     rmSync(docsPath, { recursive: true, force: true });
   }
 
-  // Step 3: Move dist/spa to docs
+  // Step 4: Move dist/spa to docs
   const distSpaPath = 'dist/spa';
   if (existsSync(distSpaPath)) {
     console.log('📁 Moving dist/spa to docs...');
@@ -28,12 +37,28 @@ try {
     process.exit(1);
   }
 
-  // Step 4: Git operations
+  // Step 5: Restore CNAME file if it existed
+  if (cnameContent !== null) {
+    console.log('📄 Restoring CNAME file...');
+    const { writeFileSync } = await import('fs');
+    writeFileSync(cnamePath, cnameContent);
+  }
+
+  // Step 6: Git operations
   console.log('📝 Adding docs to git...');
   execSync('git add docs', { stdio: 'inherit' });
 
-  console.log('💾 Committing changes...');
-  execSync('git commit -m "bundle update"', { stdio: 'inherit' });
+  // Check if there are changes to commit
+  try {
+    console.log('💾 Committing changes...');
+    execSync('git commit -m "bundle update"', { stdio: 'inherit' });
+  } catch (commitError) {
+    if (commitError.message.includes('nothing to commit')) {
+      console.log('ℹ️  No changes to commit - docs are already up to date');
+    } else {
+      throw commitError;
+    }
+  }
 
   console.log('✅ Deployment completed successfully!');
   console.log('📋 Next steps:');
