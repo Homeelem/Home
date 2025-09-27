@@ -8,7 +8,7 @@ export type Dimensions = {
 export type Product = {
   id: string;
   name: string;
-  category: "Cookware" | "Blenders" | "Air Fryers" | "Coffee Makers";
+  category: "Home Improvements";
   description: string;
   features: string[];
   dimensions: Dimensions;
@@ -21,7 +21,7 @@ export const products: Product[] = [
   {
     id: "cookware-ss-pro",
     name: "Stainless Steel Cookware Set",
-    category: "Cookware",
+    category: "Home Improvements",
     description:
       "Premium tri-ply stainless steel pots and pans engineered for even heating and long-lasting performance.",
     features: [
@@ -42,7 +42,7 @@ export const products: Product[] = [
   {
     id: "blender-speedmax",
     name: "SpeedMax High-Speed Blender",
-    category: "Blenders",
+    category: "Home Improvements",
     description:
       "Crushes ice and blends smoothies to perfection with a powerful motor and precision blades.",
     features: [
@@ -63,7 +63,7 @@ export const products: Product[] = [
   {
     id: "airfryer-crisp360",
     name: "Crisp360 Digital Air Fryer",
-    category: "Air Fryers",
+    category: "Home Improvements",
     description:
       "Healthy frying with up to 90% less oil. Digital presets and a spacious non-stick basket.",
     features: [
@@ -84,7 +84,7 @@ export const products: Product[] = [
   {
     id: "coffee-brewpro",
     name: "BrewPro Drip Coffee Maker",
-    category: "Coffee Makers",
+    category: "Home Improvements",
     description:
       "Programmable drip brewer for consistently rich coffee, with reusable filter and auto‑shutoff.",
     features: [
@@ -105,8 +105,5 @@ export const products: Product[] = [
 ];
 
 export const categories = [
-  "Cookware",
-  "Blenders",
-  "Air Fryers",
-  "Coffee Makers",
+  "Home Improvements",
 ] as const;
