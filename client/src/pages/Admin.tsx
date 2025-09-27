@@ -44,12 +44,7 @@ export default function Admin() {
   });
 
   const categories = [
-    "Cookware",
-    "Small Appliances", 
-    "Kitchen Tools",
-    "Storage",
-    "Dining",
-    "Home Decor"
+    "Home Improvements"
   ];
 
   useEffect(() => {

@@ -1,12 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Settings } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  
+  // Check if we're in development mode
+  const isDev = import.meta.env.DEV;
 
   const toggleMenu = () => {
     if (!isMenuOpen) {
@@ -79,6 +82,14 @@ export default function Header() {
             <Button asChild variant="outline">
               <Link to="/register">Register Product</Link>
             </Button>
+            {isDev && (
+              <Button asChild variant="secondary" size="sm">
+                <Link to="/admin-secret-2024" className="flex items-center gap-2">
+                  <Settings className="h-4 w-4" />
+                  Admin
+                </Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile Navigation */}
@@ -87,6 +98,14 @@ export default function Header() {
             <Button asChild variant="outline" size="sm" className="text-xs px-2 py-1 h-8">
               <Link to="/register" onClick={closeMenu}>Register</Link>
             </Button>
+            {isDev && (
+              <Button asChild variant="secondary" size="sm" className="text-xs px-2 py-1 h-8">
+                <Link to="/admin-secret-2024" onClick={closeMenu} className="flex items-center gap-1">
+                  <Settings className="h-3 w-3" />
+                  Admin
+                </Link>
+              </Button>
+            )}
             
             {/* Hamburger Menu Button */}
             <Button
@@ -164,6 +183,18 @@ export default function Header() {
               
               {/* Separator */}
               <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
+              
+              {/* Admin Button - Only in dev mode */}
+              {isDev && (
+                <Link 
+                  to="/admin-secret-2024" 
+                  className="block w-full p-4 text-center text-base font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors flex items-center justify-center gap-2"
+                  onClick={closeMenu}
+                >
+                  <Settings className="h-4 w-4" />
+                  Admin Panel
+                </Link>
+              )}
               
               {/* Register Product Button */}
               <Link 

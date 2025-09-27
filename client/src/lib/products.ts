@@ -273,13 +273,5 @@ export const getProduct = async (id: string): Promise<Product | null> => {
 };
 
 export const categories = [
-  "Cookware",
-  "Blenders", 
-  "Air Fryers",
-  "Coffee Makers",
-  "Small Appliances",
-  "Kitchen Tools",
-  "Storage",
-  "Dining",
-  "Home Decor"
+  "Home Improvements"
 ] as const;
