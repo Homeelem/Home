@@ -42,7 +42,7 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.amazonUrl && (
             <Button asChild size="sm" variant="secondary">
               <a href={product.amazonUrl} target="_blank" rel="noopener noreferrer">
-                Buy
+                Buy now
               </a>
             </Button>
           )}

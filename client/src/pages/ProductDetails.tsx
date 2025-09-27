@@ -200,7 +200,7 @@ export default function ProductDetails() {
           <div className="flex flex-wrap gap-3 pt-2">
             {product.amazonUrl && (
               <Button asChild>
-                <a href={product.amazonUrl} target="_blank" rel="noopener noreferrer">Buy on Amazon.in</a>
+                <a href={product.amazonUrl} target="_blank" rel="noopener noreferrer">Buy now</a>
               </Button>
             )}
             <Button asChild variant="secondary">
