@@ -204,7 +204,7 @@ export default function ProductDetails() {
               </Button>
             )}
             <Button asChild variant="secondary">
-              <Link to={`/register?productId=${product.id}`}>Register this product</Link>
+              <Link to={`/register?productId=${product.id}`}>Register for Warranty</Link>
             </Button>
           </div>
         </div>
