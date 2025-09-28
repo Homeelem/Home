@@ -16,7 +16,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <div 
-      className="border rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+      className="border rounded-lg p-4 bg-card shadow-sm hover:shadow-md transition-shadow cursor-pointer"
       onClick={handleCardClick}
     >
       <div className="mb-3">
@@ -28,25 +28,30 @@ export default function ProductCard({ product }: { product: Product }) {
         />
       </div>
       <div className="space-y-2">
-        <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded inline-block">
+        <div className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded inline-block">
           {product.category}
         </div>
-        <h3 className="text-lg font-semibold">{product.name}</h3>
+        <h3 className="text-lg font-semibold text-foreground">{product.name}</h3>
         {dim && (
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-muted-foreground">
             {dim.widthCm}×{dim.depthCm}×{dim.heightCm} cm{dim.weightKg ? ` • ${dim.weightKg} kg` : ""}
           </p>
         )}
         <div className="pt-2">
           {product.amazonUrl && (
-            <a 
-              href={product.amazonUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700"
+            <Button 
+              asChild 
+              size="sm"
+              onClick={(e) => e.stopPropagation()}
             >
-              Buy now
-            </a>
+              <a 
+                href={product.amazonUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Buy now
+              </a>
+            </Button>
           )}
         </div>
       </div>

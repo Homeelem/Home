@@ -17,16 +17,8 @@ export default function Index() {
               Explore our curated line of home and kitchen products built to last and crafted to delight. Every product undergoes rigorous quality testing and comes with comprehensive post-sale support.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button 
-                size="lg"
-                onClick={() => {
-                  const catalogElement = document.getElementById('catalog');
-                  if (catalogElement) {
-                    catalogElement.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
-                Explore Our Products
+              <Button asChild size="lg">
+                <Link to="/products">Explore Our Products</Link>
               </Button>
             </div>
             
