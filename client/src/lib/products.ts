@@ -223,17 +223,32 @@ const fallbackProducts: Product[] = [
 ];
 
 export const loadProducts = async (): Promise<Product[]> => {
+  console.log("loadProducts called, firebaseEnabled:", firebaseEnabled, "db:", !!db);
+  
+  // Temporarily force fallback products for debugging
+  console.warn("Using fallback products for debugging");
+  console.log("Returning fallback products:", fallbackProducts.length, "products");
+  return fallbackProducts;
+  
   if (!firebaseEnabled || !db) {
     console.warn("Firebase not configured, using fallback products");
+    console.log("Returning fallback products:", fallbackProducts.length, "products");
     return fallbackProducts;
   }
 
   try {
+    console.log("Attempting to load products from Firebase...");
     const querySnapshot = await getDocs(collection(db, "products"));
-    const products = querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    })) as Product[];
+    console.log("Firebase query result:", querySnapshot.docs.length, "documents");
+    
+    const products = querySnapshot.docs.map(doc => {
+      const data = doc.data();
+      console.log("Product from Firebase:", doc.id, data);
+      return {
+        id: doc.id,
+        ...data
+      };
+    }) as Product[];
 
     // If no products in Firebase, return fallback
     if (products.length === 0) {
@@ -241,6 +256,7 @@ export const loadProducts = async (): Promise<Product[]> => {
       return fallbackProducts;
     }
 
+    console.log("Successfully loaded", products.length, "products from Firebase");
     return products;
   } catch (error) {
     console.error("Error loading products from Firebase:", error);

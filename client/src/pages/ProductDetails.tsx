@@ -1,8 +1,8 @@
 import { useParams, Link } from "react-router-dom";
-import { getProduct } from "@/lib/products";
-import { Button } from "@/components/ui/button";
+import { getProduct } from "../lib/products";
+import { Button } from "../components/ui/button";
 import { useEffect, useState } from "react";
-import { Product } from "@/lib/products";
+import { Product } from "../lib/products";
 import { ChevronLeft, ChevronRight, X, Maximize2 } from "lucide-react";
 
 export default function ProductDetails() {

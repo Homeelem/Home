@@ -13,15 +13,27 @@ const firebaseConfig = {
 };
 
 const firebaseEnabled = Object.values(firebaseConfig).every(Boolean);
+console.log("Firebase config check:", { 
+  firebaseEnabled, 
+  config: firebaseConfig,
+  allValues: Object.values(firebaseConfig)
+});
 
 let app: ReturnType<typeof initializeApp> | undefined;
 let db: ReturnType<typeof getFirestore> | undefined;
 let auth: ReturnType<typeof getAuth> | undefined;
 
 if (firebaseEnabled) {
-  app = getApps().length ? getApps()[0]! : initializeApp(firebaseConfig as any);
-  db = getFirestore(app);
-  auth = getAuth(app);
+  try {
+    app = getApps().length ? getApps()[0]! : initializeApp(firebaseConfig as any);
+    db = getFirestore(app);
+    auth = getAuth(app);
+    console.log("Firebase initialized successfully");
+  } catch (error) {
+    console.error("Firebase initialization error:", error);
+  }
+} else {
+  console.log("Firebase not enabled, using fallback data");
 }
 
 export { db, auth, firebaseEnabled };
