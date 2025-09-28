@@ -20,7 +20,7 @@ export default function ProductDetails() {
         const productData = await getProduct(id);
         setProduct(productData);
       } catch (error) {
-        console.error("Error loading product:", error);
+        // Handle error silently
       } finally {
         setLoading(false);
       }

@@ -3,7 +3,6 @@ import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function ProductCard({ product }: { product: Product }) {
-  console.log("ProductCard rendering:", product.id, product.name);
   const dim = product.dimensions;
   const navigate = useNavigate();
 

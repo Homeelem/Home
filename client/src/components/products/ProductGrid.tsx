@@ -17,12 +17,10 @@ export default function ProductGrid() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        console.log("Loading products...");
         const allProducts = await loadProducts();
-        console.log("Products loaded:", allProducts);
         setProducts(allProducts);
       } catch (error) {
-        console.error("Error loading products:", error);
+        // Handle error silently
       } finally {
         setLoading(false);
       }
@@ -36,26 +34,8 @@ export default function ProductGrid() {
     return products.filter((p) => p.category === active);
   }, [products, active]);
 
-  console.log("ProductGrid rendering:", { 
-    loading, 
-    productsCount: products.length, 
-    filteredCount: filteredProducts.length,
-    categories: categories.length,
-    active 
-  });
-
   return (
     <div className="space-y-6">
-      {/* Debug Info */}
-      <div className="bg-yellow-100 p-4 rounded-lg text-sm">
-        <p><strong>Debug Info:</strong></p>
-        <p>Loading: {loading ? 'Yes' : 'No'}</p>
-        <p>Products Count: {products.length}</p>
-        <p>Filtered Count: {filteredProducts.length}</p>
-        <p>Categories: {categories.join(', ')}</p>
-        <p>Active Category: {active}</p>
-      </div>
-      
       <div id="categories" className="flex flex-wrap gap-2">
         {categories.map((c) => (
           <button
@@ -79,9 +59,6 @@ export default function ProductGrid() {
       ) : filteredProducts.length === 0 ? (
         <div className="text-center py-8">
           <p className="text-muted-foreground">No products found</p>
-          <p className="text-sm text-muted-foreground mt-2">
-            Total products: {products.length}, Filtered: {filteredProducts.length}
-          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

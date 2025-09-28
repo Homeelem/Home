@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 
 export default function Products() {
-  console.log("Products page rendering");
-  
   return (
     <div className="container py-10">
       <div className="max-w-7xl mx-auto">
