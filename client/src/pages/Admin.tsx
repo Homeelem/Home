@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { collection, addDoc, updateDoc, deleteDoc, doc, getDocs, serverTimestamp } from "firebase/firestore";
 import { db, firebaseEnabled } from "@/lib/firebase";
 import { loadProducts as loadFallbackProducts } from "@/lib/products";
+// Migration scripts removed
 import { toast } from "sonner";
 
 interface Product {
@@ -44,7 +45,12 @@ export default function Admin() {
   });
 
   const categories = [
-    "Home Improvements"
+    "Home Improvements",
+    "Cookware",
+    "Small Appliances",
+    "Storage",
+    "Dining",
+    "Home Decor"
   ];
 
   useEffect(() => {
@@ -61,11 +67,7 @@ export default function Admin() {
 
   const loadProducts = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, "products"));
-      const productsData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as Product[];
+      const productsData = await loadFallbackProducts();
       setProducts(productsData);
     } catch (error) {
       console.error("Error loading products:", error);
@@ -121,23 +123,37 @@ export default function Admin() {
         .filter(url => url);
 
       const productData = {
-        ...formData,
-        price: parseFloat(formData.price),
-        images: imageUrls,
+        name: formData.name,
+        category: formData.category,
+        description: formData.description,
         features: formData.features.split(',').map(feature => feature.trim()).filter(feature => feature),
+        images: imageUrls,
+        videos: [],
         amazonUrl: formData.amazonUrl.trim() || undefined,
+        price: parseFloat(formData.price),
         inStock: formData.inStock,
+        isActive: true,
+        isFeatured: false,
+        brand: 'HomeElem',
+        sku: `HE-${Date.now()}`,
+        stockQuantity: 0,
+        rating: 0,
+        reviewCount: 0,
+        tags: [],
+        specifications: {},
+        createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       };
 
       if (editingProduct) {
-        // Update existing product
-        await updateDoc(doc(db, "products", editingProduct.id), productData);
+        // Update existing product using direct Firebase call
+        const productRef = doc(db, 'B2C', 'products', 'allProducts', editingProduct.id);
+        await updateDoc(productRef, productData);
         toast.success("Product updated successfully");
       } else {
-        // Add new product
-        productData.createdAt = serverTimestamp();
-        await addDoc(collection(db, "products"), productData);
+        // Add new product using direct Firebase call
+        const productsCollection = collection(db, 'B2C', 'products', 'allProducts');
+        await addDoc(productsCollection, productData);
         toast.success("Product added successfully");
       }
 
@@ -169,14 +185,13 @@ export default function Admin() {
     if (!confirm("Are you sure you want to delete this product?")) return;
 
     if (!firebaseEnabled || !db) {
-      // In development mode, remove from local state
-      setProducts(prev => prev.filter(p => p.id !== productId));
-      toast.success("Product deleted successfully (local development mode)");
+      toast.error("Firebase not configured");
       return;
     }
 
     try {
-      await deleteDoc(doc(db, "products", productId));
+      const productRef = doc(db, 'B2C', 'products', 'allProducts', productId);
+      await deleteDoc(productRef);
       toast.success("Product deleted successfully");
       loadProducts();
     } catch (error) {
@@ -199,6 +214,7 @@ export default function Admin() {
     setEditingProduct(null);
     setIsAdding(false);
   };
+
 
   const addDummyProduct = () => {
     const dummyProducts = [
