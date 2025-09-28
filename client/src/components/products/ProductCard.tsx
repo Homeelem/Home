@@ -23,7 +23,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <img
           src={product.images[0]}
           alt={product.name}
-          className="w-full h-48 object-cover rounded"
+          className="w-full h-48 object-contain rounded"
           loading="lazy"
         />
       </div>
@@ -32,7 +32,6 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.category}
         </div>
         <h3 className="text-lg font-semibold">{product.name}</h3>
-        <p className="text-sm text-gray-600">{product.description}</p>
         {dim && (
           <p className="text-xs text-gray-500">
             {dim.widthCm}×{dim.depthCm}×{dim.heightCm} cm{dim.weightKg ? ` • ${dim.weightKg} kg` : ""}
