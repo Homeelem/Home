@@ -128,7 +128,7 @@ export default function About() {
           <div className="rounded-2xl border p-8 lg:p-10 bg-gradient-to-br from-primary/10 to-transparent">
             <h3 className="text-2xl font-semibold mb-4">Ready to Experience Quality?</h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who trust HomeElem for their home and kitchen needs.
+              Join thousands of satisfied customers who trust Home Elem for their home and kitchen needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">

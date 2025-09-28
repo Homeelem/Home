@@ -36,7 +36,7 @@ export default function Contact() {
                   <h3 className="text-xl font-semibold mb-2">Our Office</h3>
                   <p className="text-muted-foreground">
                     Sai Sagar Enclave<br />
-                    Secunderabad - 500045<br />
+                    Secunderabad - 500015<br />
                     Telangana, India
                   </p>
                 </div>
@@ -120,7 +120,7 @@ export default function Contact() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="HomeElem Office Location"
+                title="Home Elem Office Location"
               />
             </div>
             <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-lg p-3 shadow-md">
@@ -128,7 +128,7 @@ export default function Contact() {
                 <MapPin className="h-4 w-4 text-primary" />
                 <span className="font-semibold text-sm">Sai Sagar Enclave</span>
               </div>
-              <p className="text-xs text-muted-foreground">Secunderabad - 500045</p>
+              <p className="text-xs text-muted-foreground">Secunderabad - 500015</p>
             </div>
           </div>
         </div>

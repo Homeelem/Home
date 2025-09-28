@@ -11,7 +11,7 @@ export default function Index() {
           <div className="space-y-6">
             <div>
               <p className="text-sm font-medium text-primary">Home & Kitchen</p>
-              <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">HomeElem — Designed for everyday excellence</h1>
+              <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">Home Elem — Designed for everyday excellence</h1>
             </div>
             <p className="text-lg text-muted-foreground max-w-prose">
               Explore our curated line of home and kitchen products built to last and crafted to delight. Every product undergoes rigorous quality testing and comes with comprehensive post-sale support.
@@ -35,7 +35,7 @@ export default function Index() {
             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border shadow-lg">
               <img
                 src="https://images.pexels.com/photos/7061339/pexels-photo-7061339.jpeg"
-                alt="Modern kitchen with HomeElem products"
+                alt="Modern kitchen with Home Elem products"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -85,7 +85,7 @@ export default function Index() {
               </div>
               <h3 className="text-2xl font-bold text-primary">500K+</h3>
               <p className="text-lg font-semibold">Happy Customers</p>
-              <p className="text-muted-foreground text-sm">Families who trust HomeElem for their kitchen needs</p>
+              <p className="text-muted-foreground text-sm">Families who trust Home Elem for their kitchen needs</p>
             </div>
             
             <div className="text-center space-y-4">
@@ -107,7 +107,7 @@ export default function Index() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight mb-4">Quality That Never Compromises</h2>
             <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
-              We believe in delivering products that exceed expectations. Every HomeElem product undergoes <strong>15+ quality checkpoints</strong> and <strong>rigorous testing protocols</strong> before reaching your home. Our commitment to excellence is why we've maintained a <strong>99.7% quality score</strong> and <strong>4.9/5 customer rating</strong> for three consecutive years.
+              We believe in delivering products that exceed expectations. Every Home Elem product undergoes <strong>15+ quality checkpoints</strong> and <strong>rigorous testing protocols</strong> before reaching your home. Our commitment to excellence is why we've maintained a <strong>99.7% quality score</strong> and <strong>4.9/5 customer rating</strong> for three consecutive years.
             </p>
           </div>
           
@@ -155,7 +155,7 @@ export default function Index() {
               <div>
                 <h2 className="text-3xl font-bold tracking-tight mb-4">Our Rigorous Testing Process</h2>
                 <p className="text-lg text-muted-foreground">
-                  Before any HomeElem product reaches your kitchen, it must pass our comprehensive testing protocol designed to ensure reliability and safety.
+                  Before any Home Elem product reaches your kitchen, it must pass our comprehensive testing protocol designed to ensure reliability and safety.
                 </p>
               </div>
               
@@ -266,7 +266,7 @@ export default function Index() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight mb-4">What Our Customers Say</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Don't just take our word for it. Here's what our 500,000+ satisfied customers have to say about HomeElem products.
+              Don't just take our word for it. Here's what our 500,000+ satisfied customers have to say about Home Elem products.
             </p>
           </div>
           
@@ -278,7 +278,7 @@ export default function Index() {
                 ))}
               </div>
               <p className="text-muted-foreground italic">
-                "I've been using HomeElem cookware for 2 years now. The quality is outstanding and the customer support is exceptional. Truly worth every penny!"
+                "I've been using Home Elem cookware for 2 years now. The quality is outstanding and the customer support is exceptional. Truly worth every penny!"
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
@@ -298,7 +298,7 @@ export default function Index() {
                 ))}
               </div>
               <p className="text-muted-foreground italic">
-                "The air fryer from HomeElem is a game-changer! Perfect results every time and the build quality is amazing. Highly recommended!"
+                "The air fryer from Home Elem is a game-changer! Perfect results every time and the build quality is amazing. Highly recommended!"
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
@@ -348,7 +348,7 @@ export default function Index() {
         <div className="rounded-2xl border p-8 lg:p-10 bg-gradient-to-br from-primary/10 to-transparent">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-3">
-              <h3 className="text-xl font-semibold">Already purchased a HomeElem product?</h3>
+              <h3 className="text-xl font-semibold">Already purchased a Home Elem product?</h3>
               <p className="text-muted-foreground">Register to activate your warranty and receive product tips.</p>
             </div>
             <div className="flex justify-end">

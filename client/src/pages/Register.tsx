@@ -166,7 +166,7 @@ export default function Register() {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Register your HomeElem product</h1>
+              <h1 className="text-3xl font-bold tracking-tight">Register your Home Elem product</h1>
               <p className="text-muted-foreground mt-2">Provide your purchase details to activate warranty and support.</p>
             </div>
             {import.meta.env.DEV && (

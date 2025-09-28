@@ -102,7 +102,7 @@ ${formData.message}
       phone: "+91 98765 43210",
       subject: "Product Support Inquiry",
       category: "product",
-      message: "Hi, I recently purchased the HomeElem Stainless Steel Cookware Set and I'm having trouble with the non-stick coating. The food is sticking to the pan even after following the care instructions. Could you please help me with this issue? I've been using it for about 2 weeks now and it's not performing as expected. Thank you for your assistance."
+      message: "Hi, I recently purchased the Home Elem Stainless Steel Cookware Set and I'm having trouble with the non-stick coating. The food is sticking to the pan even after following the care instructions. Could you please help me with this issue? I've been using it for about 2 weeks now and it's not performing as expected. Thank you for your assistance."
     };
 
     setFormData(dummyData);
@@ -479,7 +479,7 @@ ${formData.message}
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  All HomeElem products come with a 6-month comprehensive warranty covering manufacturing defects and performance issues.
+                  All Home Elem products come with a 6-month comprehensive warranty covering manufacturing defects and performance issues.
                 </p>
               </CardContent>
             </Card>

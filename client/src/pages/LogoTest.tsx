@@ -9,7 +9,7 @@ export default function LogoTest() {
             <h2 className="text-xl font-semibold mb-4">Direct Image Test</h2>
             <img 
               src="/logo.png" 
-              alt="HomeElem Logo" 
+              alt="Home Elem Logo" 
               className="h-16 w-16 object-contain border border-gray-300"
               onError={(e) => {
                 console.error('Logo failed to load:', e);

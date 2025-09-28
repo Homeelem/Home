@@ -23,7 +23,7 @@ export default function SimpleLogo({ size = "md", showText = true, className }: 
     <div className={cn("flex items-center gap-2", className)}>
       <img 
         src="/logo.png" 
-        alt="HomeElem Logo" 
+        alt="Home Elem Logo" 
         className={cn(sizeClasses[size], "object-contain")}
         onError={(e) => {
           // Hide image if it fails to load
@@ -32,7 +32,7 @@ export default function SimpleLogo({ size = "md", showText = true, className }: 
       />
       {showText && (
         <span className={cn("font-extrabold tracking-tight", textSizeClasses[size])}>
-          HomeElem
+          Home Elem
         </span>
       )}
     </div>

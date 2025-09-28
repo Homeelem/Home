@@ -213,7 +213,7 @@ export default function RewardFlow() {
             Get <span className="text-green-600">₹200</span> instantly!
           </h1>
           <p className="text-xl text-muted-foreground mb-8">
-            Register your HomeElem product and add a review to Get ₹200 instantly! on PhonePe or Google Pay.
+            Register your Home Elem product and add a review to Get ₹200 instantly! on PhonePe or Google Pay.
           </p>
           
           <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
@@ -252,7 +252,7 @@ export default function RewardFlow() {
                   <Label htmlFor="product">Product *</Label>
                   <Select value={productId} onValueChange={setProductId} required>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select your HomeElem product" />
+                      <SelectValue placeholder="Select your Home Elem product" />
                     </SelectTrigger>
                     <SelectContent>
                       {products.map((product) => (
@@ -381,7 +381,7 @@ export default function RewardFlow() {
               <ol className="space-y-3 text-blue-800">
                 <li className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">1</span>
-                  <span>Go to your Amazon account and find your HomeElem product order</span>
+                  <span>Go to your Amazon account and find your Home Elem product order</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">2</span>
