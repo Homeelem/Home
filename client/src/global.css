@@ -106,5 +106,9 @@
 
   body {
     @apply bg-background text-foreground;
+    background-image: url('/background-image.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: auto;
   }
 }
