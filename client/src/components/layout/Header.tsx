@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Menu, X, Settings } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import Logo from "../Logo";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,21 +49,8 @@ export default function Header() {
     <>
       <header ref={menuRef} className="sticky top-0 z-[100] w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 overflow-hidden">
         <div className="container flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link to="/" className="flex items-center gap-2 min-w-0 flex-shrink-0">
-            <img 
-              src="/logo.png" 
-              alt="HomeElem Logo" 
-              className="h-8 w-8 object-contain flex-shrink-0"
-              onError={(e) => {
-                // Fallback to text if image fails to load
-                e.currentTarget.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = "h-8 w-8 flex items-center justify-center rounded-md bg-primary text-primary-foreground font-black flex-shrink-0";
-                fallback.textContent = 'H';
-                e.currentTarget.parentNode?.insertBefore(fallback, e.currentTarget);
-              }}
-            />
-            <span className="text-lg sm:text-xl font-extrabold tracking-tight truncate">HomeElem</span>
+          <Link to="/" className="min-w-0 flex-shrink-0">
+            <Logo size="md" showText={true} className="truncate" />
           </Link>
 
           {/* Desktop Navigation */}

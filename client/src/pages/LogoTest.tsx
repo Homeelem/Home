@@ -14,10 +14,6 @@ export default function LogoTest() {
               onError={(e) => {
                 console.error('Logo failed to load:', e);
                 e.currentTarget.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = "h-16 w-16 flex items-center justify-center rounded-md bg-primary text-primary-foreground font-black text-2xl";
-                fallback.textContent = 'H';
-                e.currentTarget.parentNode?.insertBefore(fallback, e.currentTarget);
               }}
             />
           </div>

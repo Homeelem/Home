@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 
 interface LogoProps {
   size?: "sm" | "md" | "lg";
@@ -26,15 +26,8 @@ export default function Logo({ size = "md", showText = true, className }: LogoPr
         alt="HomeElem Logo" 
         className={cn(sizeClasses[size], "object-contain")}
         onError={(e) => {
-          // Fallback to text if image fails to load
+          // Hide image if it fails to load
           e.currentTarget.style.display = 'none';
-          const fallback = document.createElement('div');
-          fallback.className = cn(
-            sizeClasses[size], 
-            "flex items-center justify-center rounded-md bg-primary text-primary-foreground font-black"
-          );
-          fallback.textContent = 'H';
-          e.currentTarget.parentNode?.insertBefore(fallback, e.currentTarget);
         }}
       />
       {showText && (
